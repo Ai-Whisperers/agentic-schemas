@@ -1,0 +1,128 @@
+graph LR
+%% Enhanced vertices: normalized labels, subgraphs, and metric-driven classes
+subgraph Reasoning Core
+A[[Prompt Chaining]]
+D[[Reflection]]
+S[[Reasoning Techniques]]
+T[[Exploration and Discovery]]
+end
+subgraph Planning and Control
+F[[Planning]]
+J[[Goal Setting and Monitoring]]
+P[[Prioritization]]
+O[[Resource-Aware Optimization]]
+E[[Tool Use]]
+end
+subgraph Coordination
+B[[Routing]]
+C[[Parallelization]]
+G[[Multi-Agent Collaboration]]
+N[[Inter-Agent Communication]]
+end
+subgraph Memory and Learning
+H[[Memory Management]]
+M[[Retrieval - RAG]]
+I[[Learning and Adaptation]]
+end
+subgraph Oversight and Safety
+Q[[Evaluation and Monitoring]]
+R[[Guardrails and Safety]]
+K[[Exception Handling and Recovery]]
+L[[Human-in-the-Loop]]
+end
+
+%% Edges with quoted weights
+A -- "0.90" --> D
+A -- "0.80" --> Q
+A -- "0.70" --> K
+B -- "0.90" --> O
+B -- "0.70" --> N
+B -- "0.60" --> L
+C -- "0.85" --> G
+C -- "0.70" --> Q
+C -- "0.60" --> A
+D -- "0.85" --> Q
+D -- "0.70" --> L
+D -- "0.60" --> R
+E -- "0.90" --> R
+E -- "0.80" --> K
+E -- "0.70" --> Q
+F -- "0.95" --> J
+F -- "0.85" --> P
+F -- "0.70" --> O
+F -- "0.60" --> G
+G -- "0.90" --> N
+G -- "0.70" --> H
+G -- "0.70" --> K
+G -- "0.60" --> F
+H -- "0.90" --> M
+H -- "0.80" --> I
+H -- "0.60" --> R
+I -- "0.90" --> Q
+I -- "0.70" --> J
+I -- "0.60" --> F
+J -- "0.90" --> Q
+J -- "0.70" --> P
+K -- "0.90" --> L
+K -- "0.80" --> Q
+K -- "0.70" --> R
+L -- "0.80" --> R
+L -- "0.70" --> Q
+L -- "0.60" --> K
+M -- "0.80" --> H
+M -- "0.70" --> E
+N -- "0.90" --> G
+N -- "0.70" --> L
+N -- "0.60" --> K
+O -- "0.90" --> B
+O -- "0.80" --> Q
+O -- "0.60" --> P
+P -- "0.90" --> F
+P -- "0.70" --> O
+P -- "0.60" --> Q
+Q -- "0.90" --> I
+Q -- "0.70" --> K
+Q -- "0.60" --> O
+R -- "0.90" --> E
+R -- "0.80" --> L
+R -- "0.70" --> K
+R -- "0.60" --> N
+S -- "0.80" --> F
+S -- "0.80" --> D
+S -- "0.60" --> A
+T -- "0.80" --> F
+T -- "0.70" --> C
+T -- "0.60" --> M
+T -- "0.60" --> S
+
+%% Classes: hub/authority/core/bridge overlay
+classDef hub stroke:#ffffff,stroke-width:3px;
+classDef authority stroke:#9AE6B4,stroke-width:3px;
+classDef core stroke:#90CDF4,stroke-width:3px;
+classDef bridge stroke:#F6AD55,stroke-width:4px;
+class A,E,F,G,R,T hub;
+class F,K,L,O,Q,R authority;
+class I,K,L,O,Q,R core;
+class F,G,I,K,N,O,P,Q,R bridge;
+
+%% Click-to-anchor directives (Obsidian: replace if needed)
+click A "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 1 — Prompt Chaining (assembly‑line steps and validations)]]" "Prompt Chaining"
+click B "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 2 — Routing (smart triage to specialist agents)]]" "Routing"
+click C "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 3 — Parallelization (split, normalize, merge)]]" "Parallelization"
+click D "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 4 — Reflection (critic → revise → pass)]]" "Reflection"
+click E "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 5 — Tool Use (discover, authorize, execute, fallback)]]" "Tool Use"
+click F "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 6 — Planning (milestones, dependencies, constraints)]]" "Planning"
+click G "[[20-Agentic-Design-Patterns-Structured-Transcript#Multi-Agent Collaboration]]" "Multi-Agent Collaboration"
+click H "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 8 — Memory Management (short, episodic, long‑term; retrieval)]]" "Memory Management"
+click I "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 9 — Learning and Adaptation (feedback → prompts/policies/tests)]]" "Learning and Adaptation"
+click J "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 10 — Goal Setting and Monitoring (KPIs, drift, course‑correct)]]" "Goal Setting and Monitoring"
+click K "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 11 — Exception Handling and Recovery (classify, backoff, fallbacks)]]" "Exception Handling and Recovery"
+click L "[[20-Agentic-Design-Patterns-Structured-Transcript#Human-in-the-Loop]]" "Human-in-the-Loop"
+click M "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 13 — Retrieval (RAG: parse, chunk, embed, rerank)]]" "Retrieval - RAG"
+click N "[[20-Agentic-Design-Patterns-Structured-Transcript#Inter-Agent Communication]]" "Inter-Agent Communication"
+click O "[[20-Agentic-Design-Patterns-Structured-Transcript#Resource-Aware Optimization]]" "Resource-Aware Optimization"
+click P "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 19 — Prioritization (value × effort × urgency × risk; re‑order)]]" "Prioritization"
+click Q "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 17 — Evaluation and Monitoring (golden sets, SLAs, drift)]]" "Evaluation and Monitoring"
+click R "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 18 — Guardrails and Safety (PII, injection, sandboxing)]]" "Guardrails and Safety"
+click S "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 16 — Reasoning Techniques (CoT, ToT, self‑consistency, debate)]]" "Reasoning Techniques"
+click T "[[20-Agentic-Design-Patterns-Structured-Transcript#Pattern 20 — Exploration and Discovery (map space, cluster, probe)]]" "Exploration and Discovery"

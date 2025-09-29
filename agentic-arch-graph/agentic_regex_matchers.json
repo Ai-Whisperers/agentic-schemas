@@ -1,0 +1,142 @@
+[
+  {
+    "short_id": "A",
+    "id": "prompt_chaining",
+    "label": "Prompt Chaining",
+    "pattern": "(?i)(\\bChain[-\\s]?Composition\\b|\\bMulti\\-step[-\\s]?Prompting\\b|\\bPrompt[-\\s]?Chaining\\b|\\bStepwise[-\\s]?Orchestration\\b|\\bTask[-\\s]?Decomposition\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "B",
+    "id": "routing",
+    "label": "Routing",
+    "pattern": "(?i)(Routing|\\bAgent[-\\s]?Router\\b|\\bPolicy[-\\s]?Router\\b|\\bSkill[-\\s]?Routing\\b|\\bTool[-\\s]?Router\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "C",
+    "id": "parallelization",
+    "label": "Parallelization",
+    "pattern": "(?i)(Batching|Concurrency|Fan\\-out|Parallelization|Sharding)",
+    "flags": "i"
+  },
+  {
+    "short_id": "D",
+    "id": "reflection",
+    "label": "Reflection",
+    "pattern": "(?i)(Reflection|Self\\-Reflection|Self\\-critique|\\bAudit[-\\s]?Pass\\b|\\bDeliberate[-\\s]?Second[-\\s]?Pass\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "E",
+    "id": "tool_use",
+    "label": "Tool Use",
+    "pattern": "(?i)(Plugins|\\bAPI[-\\s]?Calls\\b|\\bExternal[-\\s]?Tools\\b|\\bFunction[-\\s]?Calling\\b|\\bTool[-\\s]?Use\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "F",
+    "id": "planning",
+    "label": "Planning",
+    "pattern": "(?i)(Plan\\-and\\-Act|Planning|\\bDecomposition[-\\s]?Planning\\b|\\bProject[-\\s]?Planner\\b|\\bTask[-\\s]?Planning\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "G",
+    "id": "multi_agent_collaboration",
+    "label": "Multi-Agent Collaboration",
+    "pattern": "(?i)(Swarms|\\bAgent[-\\s]?Mesh\\b|\\bAgent[-\\s]?Teams\\b|\\bMulti\\-Agent[-\\s]?Collaboration\\b|\\bOrchestrated[-\\s]?Agents\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "H",
+    "id": "memory_management",
+    "label": "Memory Management",
+    "pattern": "(?i)(\\bContext[-\\s]?Cache\\b|\\bLong\\-Term[-\\s]?Memory\\b|\\bMemory[-\\s]?Management\\b|\\bVector[-\\s]?Store\\b|\\bWorking[-\\s]?Memory\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "I",
+    "id": "learning_adaptation",
+    "label": "Learning and Adaptation",
+    "pattern": "(?i)(Self\\-Tuning|\\bContinuous[-\\s]?Improvement\\b|\\bLearning[-\\s]?and[-\\s]?Adaptation\\b|\\bParameter[-\\s]?Update\\b|\\bPolicy[-\\s]?Update\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "J",
+    "id": "goal_setting_monitoring",
+    "label": "Goal Setting and Monitoring",
+    "pattern": "(?i)(OKRs|Objectives|\\bGoal[-\\s]?Setting[-\\s]?and[-\\s]?Monitoring\\b|\\bMilestone[-\\s]?Tracking\\b|\\bTarget[-\\s]?Tracking\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "K",
+    "id": "exception_handling_recovery",
+    "label": "Exception Handling and Recovery",
+    "pattern": "(?i)(Fallbacks|Retries|\\bCircuit[-\\s]?Breaker\\b|\\bException[-\\s]?Handling[-\\s]?and[-\\s]?Recovery\\b|\\bTimeout[-\\s]?Recovery\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "L",
+    "id": "human_in_the_loop",
+    "label": "Human-in-the-Loop",
+    "pattern": "(?i)(Escalation|HITL|Human\\-in\\-the\\-Loop|Reviewer|\\bApproval[-\\s]?Gate\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "M",
+    "id": "retrieval_rag",
+    "label": "Retrieval - RAG",
+    "pattern": "(?i)(\\bContext[-\\s]?Injection\\b|\\bDocument[-\\s]?Grounding\\b|\\bKnowledge[-\\s]?Retrieval\\b|\\bRetrieval[-\\s]?Augmented[-\\s]?Generation\\b|\\bRetrieval[-\\s]?\\-[-\\s]?RAG\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "N",
+    "id": "inter_agent_communication",
+    "label": "Inter-Agent Communication",
+    "pattern": "(?i)(Blackboard|Pub/Sub|\\bAgent[-\\s]?Messaging\\b|\\bInter\\-Agent[-\\s]?Communication\\b|\\bProtocol[-\\s]?Bus\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "O",
+    "id": "resource_aware_optimization",
+    "label": "Resource-Aware Optimization",
+    "pattern": "(?i)(Budgeting|\\bCompute[-\\s]?Allocation\\b|\\bKnob[-\\s]?Tuning\\b|\\bLatency\\-Cost[-\\s]?Tradeoff\\b|\\bResource\\-Aware[-\\s]?Optimization\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "P",
+    "id": "prioritization",
+    "label": "Prioritization",
+    "pattern": "(?i)(Prioritization|Ranking|Scheduling|\\bGreedy[-\\s]?Selection\\b|\\bQueue[-\\s]?Ordering\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "Q",
+    "id": "evaluation_monitoring",
+    "label": "Evaluation and Monitoring",
+    "pattern": "(?i)(Evals|Metrics|Telemetry|\\bA/B[-\\s]?Tests\\b|\\bEvaluation[-\\s]?and[-\\s]?Monitoring\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "R",
+    "id": "guardrails_safety",
+    "label": "Guardrails and Safety",
+    "pattern": "(?i)(\\bContent[-\\s]?Filters\\b|\\bGuardrails[-\\s]?and[-\\s]?Safety\\b|\\bPolicy[-\\s]?Enforcement\\b|\\bRed[-\\s]?Teaming\\b|\\bSafety[-\\s]?Checks\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "S",
+    "id": "reasoning_techniques",
+    "label": "Reasoning Techniques",
+    "pattern": "(?i)(Debate|Graph\\-of\\-Thought|Scratchpad|Tree\\-of\\-Thought|\\bReasoning[-\\s]?Techniques\\b)",
+    "flags": "i"
+  },
+  {
+    "short_id": "T",
+    "id": "exploration_discovery",
+    "label": "Exploration and Discovery",
+    "pattern": "(?i)(Probing|Search|\\bDivergent[-\\s]?Thinking\\b|\\bExploration[-\\s]?and[-\\s]?Discovery\\b|\\bHypothesis[-\\s]?Generation\\b)",
+    "flags": "i"
+  }
+]

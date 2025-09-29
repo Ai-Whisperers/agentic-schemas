@@ -1,0 +1,21 @@
+short_id,id,label,pattern,flags
+A,prompt_chaining,Prompt Chaining,(?i)(\bChain[-\s]?Composition\b|\bMulti\-step[-\s]?Prompting\b|\bPrompt[-\s]?Chaining\b|\bStepwise[-\s]?Orchestration\b|\bTask[-\s]?Decomposition\b),i
+B,routing,Routing,(?i)(Routing|\bAgent[-\s]?Router\b|\bPolicy[-\s]?Router\b|\bSkill[-\s]?Routing\b|\bTool[-\s]?Router\b),i
+C,parallelization,Parallelization,(?i)(Batching|Concurrency|Fan\-out|Parallelization|Sharding),i
+D,reflection,Reflection,(?i)(Reflection|Self\-Reflection|Self\-critique|\bAudit[-\s]?Pass\b|\bDeliberate[-\s]?Second[-\s]?Pass\b),i
+E,tool_use,Tool Use,(?i)(Plugins|\bAPI[-\s]?Calls\b|\bExternal[-\s]?Tools\b|\bFunction[-\s]?Calling\b|\bTool[-\s]?Use\b),i
+F,planning,Planning,(?i)(Plan\-and\-Act|Planning|\bDecomposition[-\s]?Planning\b|\bProject[-\s]?Planner\b|\bTask[-\s]?Planning\b),i
+G,multi_agent_collaboration,Multi-Agent Collaboration,(?i)(Swarms|\bAgent[-\s]?Mesh\b|\bAgent[-\s]?Teams\b|\bMulti\-Agent[-\s]?Collaboration\b|\bOrchestrated[-\s]?Agents\b),i
+H,memory_management,Memory Management,(?i)(\bContext[-\s]?Cache\b|\bLong\-Term[-\s]?Memory\b|\bMemory[-\s]?Management\b|\bVector[-\s]?Store\b|\bWorking[-\s]?Memory\b),i
+I,learning_adaptation,Learning and Adaptation,(?i)(Self\-Tuning|\bContinuous[-\s]?Improvement\b|\bLearning[-\s]?and[-\s]?Adaptation\b|\bParameter[-\s]?Update\b|\bPolicy[-\s]?Update\b),i
+J,goal_setting_monitoring,Goal Setting and Monitoring,(?i)(OKRs|Objectives|\bGoal[-\s]?Setting[-\s]?and[-\s]?Monitoring\b|\bMilestone[-\s]?Tracking\b|\bTarget[-\s]?Tracking\b),i
+K,exception_handling_recovery,Exception Handling and Recovery,(?i)(Fallbacks|Retries|\bCircuit[-\s]?Breaker\b|\bException[-\s]?Handling[-\s]?and[-\s]?Recovery\b|\bTimeout[-\s]?Recovery\b),i
+L,human_in_the_loop,Human-in-the-Loop,(?i)(Escalation|HITL|Human\-in\-the\-Loop|Reviewer|\bApproval[-\s]?Gate\b),i
+M,retrieval_rag,Retrieval - RAG,(?i)(\bContext[-\s]?Injection\b|\bDocument[-\s]?Grounding\b|\bKnowledge[-\s]?Retrieval\b|\bRetrieval[-\s]?Augmented[-\s]?Generation\b|\bRetrieval[-\s]?\-[-\s]?RAG\b),i
+N,inter_agent_communication,Inter-Agent Communication,(?i)(Blackboard|Pub/Sub|\bAgent[-\s]?Messaging\b|\bInter\-Agent[-\s]?Communication\b|\bProtocol[-\s]?Bus\b),i
+O,resource_aware_optimization,Resource-Aware Optimization,(?i)(Budgeting|\bCompute[-\s]?Allocation\b|\bKnob[-\s]?Tuning\b|\bLatency\-Cost[-\s]?Tradeoff\b|\bResource\-Aware[-\s]?Optimization\b),i
+P,prioritization,Prioritization,(?i)(Prioritization|Ranking|Scheduling|\bGreedy[-\s]?Selection\b|\bQueue[-\s]?Ordering\b),i
+Q,evaluation_monitoring,Evaluation and Monitoring,(?i)(Evals|Metrics|Telemetry|\bA/B[-\s]?Tests\b|\bEvaluation[-\s]?and[-\s]?Monitoring\b),i
+R,guardrails_safety,Guardrails and Safety,(?i)(\bContent[-\s]?Filters\b|\bGuardrails[-\s]?and[-\s]?Safety\b|\bPolicy[-\s]?Enforcement\b|\bRed[-\s]?Teaming\b|\bSafety[-\s]?Checks\b),i
+S,reasoning_techniques,Reasoning Techniques,(?i)(Debate|Graph\-of\-Thought|Scratchpad|Tree\-of\-Thought|\bReasoning[-\s]?Techniques\b),i
+T,exploration_discovery,Exploration and Discovery,(?i)(Probing|Search|\bDivergent[-\s]?Thinking\b|\bExploration[-\s]?and[-\s]?Discovery\b|\bHypothesis[-\s]?Generation\b),i

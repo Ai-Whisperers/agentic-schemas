@@ -1,0 +1,102 @@
+graph LR
+%% Styled by tags: layer + polarity
+A[[Prompt Chaining]]
+B[[Routing]]
+C[[Parallelization]]
+D[[Reflection]]
+E[[Tool Use]]
+F[[Planning]]
+G[[Multi-Agent Collaboration]]
+H[[Memory Management]]
+I[[Learning and Adaptation]]
+J[[Goal Setting and Monitoring]]
+K[[Exception Handling and Recovery]]
+L[[Human-in-the-Loop]]
+M[[Retrieval - RAG]]
+N[[Inter-Agent Communication]]
+O[[Resource-Aware Optimization]]
+P[[Prioritization]]
+Q[[Evaluation and Monitoring]]
+R[[Guardrails and Safety]]
+S[[Reasoning Techniques]]
+T[[Exploration and Discovery]]
+
+%% Edges (preserved)
+A -- "0.90" --> D
+A -- "0.80" --> Q
+A -- "0.70" --> K
+B -- "0.90" --> O
+B -- "0.70" --> N
+B -- "0.60" --> L
+C -- "0.85" --> G
+C -- "0.70" --> Q
+C -- "0.60" --> A
+D -- "0.85" --> Q
+D -- "0.70" --> L
+D -- "0.60" --> R
+E -- "0.90" --> R
+E -- "0.80" --> K
+E -- "0.70" --> Q
+F -- "0.95" --> J
+F -- "0.85" --> P
+F -- "0.70" --> O
+F -- "0.60" --> G
+G -- "0.90" --> N
+G -- "0.70" --> H
+G -- "0.70" --> K
+G -- "0.60" --> F
+H -- "0.90" --> M
+H -- "0.80" --> I
+H -- "0.60" --> R
+I -- "0.90" --> Q
+I -- "0.70" --> J
+I -- "0.60" --> F
+J -- "0.90" --> Q
+J -- "0.70" --> P
+K -- "0.90" --> L
+K -- "0.80" --> Q
+K -- "0.70" --> R
+L -- "0.80" --> R
+L -- "0.70" --> Q
+L -- "0.60" --> K
+M -- "0.80" --> H
+M -- "0.70" --> E
+N -- "0.90" --> G
+N -- "0.70" --> L
+N -- "0.60" --> K
+O -- "0.90" --> B
+O -- "0.80" --> Q
+O -- "0.60" --> P
+P -- "0.90" --> F
+P -- "0.70" --> O
+P -- "0.60" --> Q
+Q -- "0.90" --> I
+Q -- "0.70" --> K
+Q -- "0.60" --> O
+R -- "0.90" --> E
+R -- "0.80" --> L
+R -- "0.70" --> K
+R -- "0.60" --> N
+S -- "0.80" --> F
+S -- "0.80" --> D
+S -- "0.60" --> A
+T -- "0.80" --> F
+T -- "0.70" --> C
+T -- "0.60" --> M
+T -- "0.60" --> S
+
+%% Tag-driven class definitions
+classDef layer_reasoning_core fill:#1f293780,stroke:#1f2937,stroke-width:1px;
+classDef layer_planning_control fill:#2f855a33,stroke:#2f855a,stroke-width:1px;
+classDef layer_coordination fill:#3182ce33,stroke:#3182ce,stroke-width:1px;
+classDef layer_memory_learning fill:#805ad533,stroke:#805ad5,stroke-width:1px;
+classDef layer_oversight_safety fill:#dd6b2033,stroke:#dd6b20,stroke-width:1px;
+classDef polarity_fluxus stroke-dasharray: 3 2;
+classDef polarity_latticus stroke-dasharray: 0;
+class A,D,S,T layer_reasoning_core;
+class B,C,G,N layer_coordination;
+class E,F,J,O,P layer_planning_control;
+class H,I,M layer_memory_learning;
+class K,L,Q,R layer_oversight_safety;
+class A,D,H,I,S,T polarity_fluxus;
+class B,C,E,F,G,J,K,L,M,N,O,P,Q,R polarity_latticus;
