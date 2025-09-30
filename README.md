@@ -7,6 +7,8 @@
 [![Documentation](https://img.shields.io/badge/📚_Full-Documentation-green)](#pattern-1--prompt-chaining-assemblyline-steps-and-validations)
 [![Mermaid Diagrams](https://img.shields.io/badge/📊_Mermaid-Diagrams-orange)](#mermaid-overview)
 
+**A proposed graph-structured architectural framework for building production-ready AI agent systems.** This repository models 20 foundational agentic design patterns as an interconnected knowledge graph, with weighted edges representing pattern dependencies, composition strategies, and architectural flows. Each pattern is defined through structured JSON schemas (vertices with metadata: layer, polarity, compute requirements, safety surface) and relationship mappings that reveal how patterns combine in practice—from basic prompt chaining and routing to complex multi-agent collaboration, RAG pipelines, guardrails, and reasoning techniques. Includes interactive D3.js graph visualization, Mermaid diagrams with hub/authority/bridge classifications, and plain-English documentation covering trade-offs (cost, latency, failure modes), composability rules, and decision criteria for pattern selection.
+
 ## Overview: 20 Agentic Design Patterns
 
 ### Purpose and Scope
@@ -21,6 +23,120 @@ Prompt chaining, routing, parallelization, reflection, tool use, planning/orches
 ---
 
 ## Mermaid Overview
+
+
+---
+
+## Mindmap
+
+```mermaid
+mindmap
+  root((20 Agentic Design Patterns))
+    Core (1–10)
+      Prompt Chaining
+      Routing
+      Parallelization
+      Reflection
+      Tool Use
+      Planning
+      Multi-Agent Collaboration
+      Memory Management
+      Learning & Adaptation
+      Goal Setting & Monitoring
+    Reliability (11–15)
+      Exception Handling & Recovery
+      Human-in-the-Loop
+      Retrieval (RAG)
+      Inter-Agent Communication
+      Resource-Aware Optimization
+    Reasoning (16–20)
+      Reasoning Techniques
+      Evaluation & Monitoring
+      Guardrails & Safety
+      Prioritization
+      Exploration & Discovery
+```
+
+## Simplified Digraph (suggested directional relationships)
+
+```mermaid
+graph LR
+A[[Prompt Chaining]] --0.9--> D[[Reflection]]
+A --0.8--> Q[[Evaluation & Monitoring]]
+A --0.7--> K[[Exception Handling & Recovery]]
+
+B[[Routing]] --0.9--> O[[Resource-Aware Optimization]]
+B --0.7--> N[[Inter-Agent Communication]]
+B --0.6--> L[[Human-in-the-Loop]]
+
+C[[Parallelization]] --0.8--> G[[Multi-Agent Collaboration]]
+C --0.7--> Q
+C --0.6--> A
+
+D[[Reflection]] --0.8--> Q
+D --0.7--> L
+D --0.6--> R[[Guardrails & Safety]]
+
+E[[Tool Use]] --0.9--> R
+E --0.8--> K
+E --0.7--> Q
+
+F[[Planning]] --0.9--> J[[Goal Setting & Monitoring]]
+F --0.8--> P[[Prioritization]]
+F --0.7--> O
+
+G[[Multi-Agent Collaboration]] --0.9--> N
+G --0.7--> H[[Memory Management]]
+G --0.7--> K
+
+H[[Memory Management]] --0.9--> M[[Retrieval (RAG)]]
+H --0.7--> I[[Learning & Adaptation]]
+H --0.6--> R
+
+I[[Learning & Adaptation]] --0.9--> Q
+I --0.7--> J
+
+J[[Goal Setting & Monitoring]] --0.9--> Q
+J --0.7--> P
+
+K[[Exception Handling & Recovery]] --0.9--> L
+K --0.8--> Q
+K --0.7--> R
+
+L[[Human-in-the-Loop]] --0.8--> R
+L --0.7--> Q
+
+M[[Retrieval (RAG)]] --0.8--> H
+M --0.7--> E
+
+N[[Inter-Agent Communication]] --0.9--> G
+N --0.7--> L
+N --0.6--> K
+
+O[[Resource-Aware Optimization]] --0.9--> B
+O --0.8--> Q
+O --0.6--> P
+
+P[[Prioritization]] --0.9--> F
+P --0.7--> O
+
+Q[[Evaluation & Monitoring]] --0.9--> I
+Q --0.7--> K
+
+R[[Guardrails & Safety]] --0.9--> E
+R --0.8--> L
+R --0.7--> K
+
+S[[Reasoning Techniques]] --0.8--> F
+S --0.8--> D
+S --0.6--> A
+
+T[[Exploration & Discovery]] --0.8--> F
+T --0.7--> C
+T --0.6--> M
+```
+
+## Advanced Digraph (suggested weights and IDs)
 
 ```mermaid
 graph LR
@@ -130,7 +246,6 @@ class F,K,L,O,Q,R authority;
 class I,K,L,O,Q,R core;
 class F,G,I,K,N,O,P,Q,R bridge;
 ```
-
 ---
 
 ## Pattern 1 — Prompt Chaining (assembly‑line steps and validations)
@@ -271,115 +386,3 @@ original video source of transcript: https://www.youtube.com/watch?v=e2zIr_2JMbE
 5. Cost visibility: track cumulative tokens, latency, and failure modes per step; adopt prompt caching and context minimization.  
 6. Memory governance: retention windows, privacy policies, redaction, and relevance scoring are mandatory for long‑running systems.
 
----
-
-## Appendix A — Mermaid Mindmap (overview)
-
-```mermaid
-mindmap
-  root((20 Agentic Design Patterns))
-    Core (1–10)
-      Prompt Chaining
-      Routing
-      Parallelization
-      Reflection
-      Tool Use
-      Planning
-      Multi-Agent Collaboration
-      Memory Management
-      Learning & Adaptation
-      Goal Setting & Monitoring
-    Reliability (11–15)
-      Exception Handling & Recovery
-      Human-in-the-Loop
-      Retrieval (RAG)
-      Inter-Agent Communication
-      Resource-Aware Optimization
-    Reasoning (16–20)
-      Reasoning Techniques
-      Evaluation & Monitoring
-      Guardrails & Safety
-      Prioritization
-      Exploration & Discovery
-```
-
----
-
-## Appendix B — Mermaid Digraph (suggested directional relationships)
-
-```mermaid
-graph LR
-A[[Prompt Chaining]] --0.9--> D[[Reflection]]
-A --0.8--> Q[[Evaluation & Monitoring]]
-A --0.7--> K[[Exception Handling & Recovery]]
-
-B[[Routing]] --0.9--> O[[Resource-Aware Optimization]]
-B --0.7--> N[[Inter-Agent Communication]]
-B --0.6--> L[[Human-in-the-Loop]]
-
-C[[Parallelization]] --0.8--> G[[Multi-Agent Collaboration]]
-C --0.7--> Q
-C --0.6--> A
-
-D[[Reflection]] --0.8--> Q
-D --0.7--> L
-D --0.6--> R[[Guardrails & Safety]]
-
-E[[Tool Use]] --0.9--> R
-E --0.8--> K
-E --0.7--> Q
-
-F[[Planning]] --0.9--> J[[Goal Setting & Monitoring]]
-F --0.8--> P[[Prioritization]]
-F --0.7--> O
-
-G[[Multi-Agent Collaboration]] --0.9--> N
-G --0.7--> H[[Memory Management]]
-G --0.7--> K
-
-H[[Memory Management]] --0.9--> M[[Retrieval (RAG)]]
-H --0.7--> I[[Learning & Adaptation]]
-H --0.6--> R
-
-I[[Learning & Adaptation]] --0.9--> Q
-I --0.7--> J
-
-J[[Goal Setting & Monitoring]] --0.9--> Q
-J --0.7--> P
-
-K[[Exception Handling & Recovery]] --0.9--> L
-K --0.8--> Q
-K --0.7--> R
-
-L[[Human-in-the-Loop]] --0.8--> R
-L --0.7--> Q
-
-M[[Retrieval (RAG)]] --0.8--> H
-M --0.7--> E
-
-N[[Inter-Agent Communication]] --0.9--> G
-N --0.7--> L
-N --0.6--> K
-
-O[[Resource-Aware Optimization]] --0.9--> B
-O --0.8--> Q
-O --0.6--> P
-
-P[[Prioritization]] --0.9--> F
-P --0.7--> O
-
-Q[[Evaluation & Monitoring]] --0.9--> I
-Q --0.7--> K
-
-R[[Guardrails & Safety]] --0.9--> E
-R --0.8--> L
-R --0.7--> K
-
-S[[Reasoning Techniques]] --0.8--> F
-S --0.8--> D
-S --0.6--> A
-
-T[[Exploration & Discovery]] --0.8--> F
-T --0.7--> C
-T --0.6--> M
-```
