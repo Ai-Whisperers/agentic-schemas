@@ -69,13 +69,13 @@ mindmap
       Memory Management
       Learning & Adaptation
       Goal Setting & Monitoring
-    Reliability (11–15):::class-rel
+    Reliability 11–15:::class-rel
       Exception Handling & Recovery
       Human-in-the-Loop
       Retrieval (RAG)
       Inter-Agent Communication
       Resource-Aware Optimization
-    Reasoning (16–20):::class-rea
+    Reasoning 16–20:::class-rea
       Reasoning Techniques
       Evaluation & Monitoring
       Guardrails & Safety
