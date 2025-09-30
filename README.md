@@ -30,42 +30,12 @@ Prompt chaining, routing, parallelization, reflection, tool use, planning/orches
   "themeVariables": {
     "fontFamily": "Inter, ui-sans-serif, system-ui",
     "background": "transparent",
-    "primaryTextColor": "var(--mm-text)",
-    "lineColor": "var(--mm-line)"
+    "primaryTextColor": "#0F172A",
+    "lineColor": "#CBD5E1"
   },
-  "themeCSS": "
-:root{
-  /* Light neutrals */
-  --mm-surface:#F6F7FB; --mm-line:#CBD5E1; --mm-text:#0F172A;
+  "themeCSS": ".nodeLabelBkg{fill:transparent!important;stroke:none!important;} .mindmap-node rect{rx:12px;ry:12px;fill:#F6F7FB;stroke:#CBD5E1;stroke-width:1px;} .edgePath path{stroke:#CBD5E1;stroke-width:1.5px;} .nodeLabel{fill:#0F172A;font-weight:550;} .class-core rect{stroke:#0284C7;stroke-width:2px;fill:#0EA5E91F;} .class-rel rect{stroke:#B45309;stroke-width:2px;fill:#F59E0B1F;} .class-rea rect{stroke:#6D28D9;stroke-width:2px;fill:#8B5CF61F;}"
+}}%%
 
-  /* Accents (light fills ~12%) */
-  --core-stroke:#0284C7; --core-fill:#0EA5E91F; /* cyan */
-  --rel-stroke:#B45309;  --rel-fill:#F59E0B1F; /* amber */
-  --rea-stroke:#6D28D9;  --rea-fill:#8B5CF61F; /* violet */
-}
-@media (prefers-color-scheme: dark){
-  :root{
-    /* Dark neutrals */
-    --mm-surface:#10162A; --mm-line:#334155; --mm-text:#E6EAF2;
-
-    /* Dark-mode fills a bit stronger (~20%) for readability */
-    --core-fill:#0EA5E933;
-    --rel-fill:#F59E0B33;
-    --rea-fill:#8B5CF633;
-  }
-}
-
-/* Remove tiny white label backgrounds & polish nodes */
-.nodeLabelBkg { fill: transparent !important; stroke: none !important; }
-.mindmap-node rect { rx:12px; ry:12px; fill: var(--mm-surface); stroke: var(--mm-line); stroke-width:1px; }
-.edgePath path { stroke: var(--mm-line); stroke-width:1.5px; }
-.nodeLabel { fill: var(--mm-text); font-weight:550; }
-
-/* Branch classes */
-.class-core rect { stroke: var(--core-stroke); stroke-width:2px; fill: var(--core-fill); }
-.class-rel  rect { stroke: var(--rel-stroke);  stroke-width:2px; fill: var(--rel-fill); }
-.class-rea  rect { stroke: var(--rea-stroke);  stroke-width:2px; fill: var(--rea-fill); }
-" } }%%
 mindmap
   root((20 Agentic Design Patterns))
     Core:::class-core
@@ -79,13 +49,13 @@ mindmap
       Memory Management:::class-core
       Learning & Adaptation:::class-core
       Goal Setting & Monitoring:::class-core
-    Reliability 11–15:::class-rel
+    Reliability 11-15:::class-rel
       Exception Handling & Recovery:::class-rel
       Human-in-the-Loop:::class-rel
       Retrieval - RAG:::class-rel
       Inter-Agent Communication:::class-rel
       Resource-Aware Optimization:::class-rel
-    Reasoning 16–20:::class-rea
+    Reasoning 16-20:::class-rea
       Reasoning Techniques:::class-rea
       Evaluation & Monitoring:::class-rea
       Guardrails & Safety:::class-rea
