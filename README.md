@@ -1,9 +1,9 @@
 # 20 Agentic Design Patterns
 
-[![GitHub Stars](https://img.shields.io/github/stars/Ai-Whisperers/agentic-schemas?style=social)](https://github.com/Ai-Whisperers/agentic-schemas)
-[![GitHub Forks](https://img.shields.io/github/forks/Ai-Whisperers/agentic-schemas?style=social)](https://github.com/Ai-Whisperers/agentic-schemas/fork)
-[![License](https://img.shields.io/github/license/Ai-Whisperers/agentic-schemas)](https://github.com/Ai-Whisperers/agentic-schemas/blob/main/LICENSE)
-[![Interactive Visualization](https://img.shields.io/badge/🎨_Interactive-Visualization-blue)](https://ai-whisperers.github.io/agentic-schemas/visualization/interactive-graph/)
+[![GitHub Stars](https://img.shields.io/github/stars/Ai-Whisperers/agentic-schemas?style=social&cacheSeconds=3600)](https://github.com/Ai-Whisperers/agentic-schemas)
+[![GitHub Forks](https://img.shields.io/github/forks/Ai-Whisperers/agentic-schemas?style=social&cacheSeconds=3600)](https://github.com/Ai-Whisperers/agentic-schemas/fork)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Ai-Whisperers/agentic-schemas/blob/main/LICENSE)
+[![Interactive Visualization](https://img.shields.io/badge/🎨_Interactive-Visualization-blue)](https://ai-whisperers.github.io/agentic-schemas/)
 [![Documentation](https://img.shields.io/badge/📚_Full-Documentation-green)](#pattern-1--prompt-chaining-assemblyline-steps-and-validations)
 [![Mermaid Diagrams](https://img.shields.io/badge/📊_Mermaid-Diagrams-orange)](#mermaid-overview)
 
@@ -23,7 +23,6 @@ Prompt chaining, routing, parallelization, reflection, tool use, planning/orches
 ---
 
 ## Mermaid Overview
-
 
 ---
 
@@ -89,7 +88,7 @@ G[[Multi-Agent Collaboration]] --0.9--> N
 G --0.7--> H[[Memory Management]]
 G --0.7--> K
 
-H[[Memory Management]] --0.9--> M[[Retrieval (RAG)]]
+H[[Memory Management]] --0.9--> M[[Retrieval - RAG]]
 H --0.7--> I[[Learning & Adaptation]]
 H --0.6--> R
 
@@ -106,7 +105,7 @@ K --0.7--> R
 L[[Human-in-the-Loop]] --0.8--> R
 L --0.7--> Q
 
-M[[Retrieval (RAG)]] --0.8--> H
+M[[Retrieval - RAG]] --0.8--> H
 M --0.7--> E
 
 N[[Inter-Agent Communication]] --0.9--> G
