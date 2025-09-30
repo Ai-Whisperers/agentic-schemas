@@ -22,16 +22,43 @@ Prompt chaining, routing, parallelization, reflection, tool use, planning/orches
 
 ---
 
-## Mermaid Overview
-
----
-
-## Mindmap
+## Mindmap of Agentic patterns
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Inter, ui-sans-serif, system-ui",
+    "background": "transparent",
+    "primaryTextColor": "var(--mm-text)",
+    "lineColor": "var(--mm-line)"
+  },
+  "themeCSS": "
+:root{
+  --mm-bg:#FFFFFF; --mm-surface:#F6F7FB; --mm-line:#CBD5E1; --mm-text:#0F172A;
+  --core-stroke:#0284C7; --core-fill:#0EA5E91F;
+  --rel-stroke:#B45309;  --rel-fill:#F59E0B1F;
+  --rea-stroke:#6D28D9;  --rea-fill:#8B5CF61F;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --mm-bg:#0B1020; --mm-surface:#10162A; --mm-line:#334155; --mm-text:#E6EAF2;
+    /* keep same accents; they already pop on dark */
+  }
+}
+/* General node polish */
+.mindmap-node rect, .nodeLabelBkg { rx:12px; ry:12px; }
+.mindmap-node rect { fill: var(--mm-surface); stroke: var(--mm-line); stroke-width:1px; }
+.edgePath path { stroke: var(--mm-line); stroke-width:1.5px; }
+/* Category classes */
+.class-core rect { stroke: var(--core-stroke); stroke-width:2px; fill: var(--core-fill); }
+.class-rel  rect { stroke: var(--rel-stroke);  stroke-width:2px; fill: var(--rel-fill); }
+.class-rea  rect { stroke: var(--rea-stroke);  stroke-width:2px; fill: var(--rea-fill); }
+.nodeLabel { fill: var(--mm-text); font-weight: 550; }
+" } }%%
 mindmap
   root((20 Agentic Design Patterns))
-    Core (1–10)
+    Core:::class-core
       Prompt Chaining
       Routing
       Parallelization
@@ -42,13 +69,13 @@ mindmap
       Memory Management
       Learning & Adaptation
       Goal Setting & Monitoring
-    Reliability (11–15)
+    Reliability (11–15):::class-rel
       Exception Handling & Recovery
       Human-in-the-Loop
       Retrieval (RAG)
       Inter-Agent Communication
       Resource-Aware Optimization
-    Reasoning (16–20)
+    Reasoning (16–20):::class-rea
       Reasoning Techniques
       Evaluation & Monitoring
       Guardrails & Safety
@@ -56,86 +83,73 @@ mindmap
       Exploration & Discovery
 ```
 
-## Simplified Digraph (suggested directional relationships)
+## Core agentic "loop" (quick overview)
 
 ```mermaid
 graph LR
-A[[Prompt Chaining]] --0.9--> D[[Reflection]]
-A --0.8--> Q[[Evaluation & Monitoring]]
-A --0.7--> K[[Exception Handling & Recovery]]
+  U((Input / Task)) --> R[Routing]
+  R --> O[Resource-Aware Opt]
+  O --> P[Planning]
+  P --> X[Execute / Tool Use]
+  X --> Re[Reflection]
+  Re --> Q[Eval & Monitor]
+  Q -- pass --> Out((Output))
+  Q -- fail --> S[Safety & HITL / Exceptions]
+  S --> P
 
-B[[Routing]] --0.9--> O[[Resource-Aware Optimization]]
-B --0.7--> N[[Inter-Agent Communication]]
-B --0.6--> L[[Human-in-the-Loop]]
+  %% Memory sidecar
+  X --> M[Memory / RAG]
+  M --> X
 
-C[[Parallelization]] --0.8--> G[[Multi-Agent Collaboration]]
-C --0.7--> Q
-C --0.6--> A
-
-D[[Reflection]] --0.8--> Q
-D --0.7--> L
-D --0.6--> R[[Guardrails & Safety]]
-
-E[[Tool Use]] --0.9--> R
-E --0.8--> K
-E --0.7--> Q
-
-F[[Planning]] --0.9--> J[[Goal Setting & Monitoring]]
-F --0.8--> P[[Prioritization]]
-F --0.7--> O
-
-G[[Multi-Agent Collaboration]] --0.9--> N
-G --0.7--> H[[Memory Management]]
-G --0.7--> K
-
-H[[Memory Management]] --0.9--> M[[Retrieval - RAG]]
-H --0.7--> I[[Learning & Adaptation]]
-H --0.6--> R
-
-I[[Learning & Adaptation]] --0.9--> Q
-I --0.7--> J
-
-J[[Goal Setting & Monitoring]] --0.9--> Q
-J --0.7--> P
-
-K[[Exception Handling & Recovery]] --0.9--> L
-K --0.8--> Q
-K --0.7--> R
-
-L[[Human-in-the-Loop]] --0.8--> R
-L --0.7--> Q
-
-M[[Retrieval - RAG]] --0.8--> H
-M --0.7--> E
-
-N[[Inter-Agent Communication]] --0.9--> G
-N --0.7--> L
-N --0.6--> K
-
-O[[Resource-Aware Optimization]] --0.9--> B
-O --0.8--> Q
-O --0.6--> P
-
-P[[Prioritization]] --0.9--> F
-P --0.7--> O
-
-Q[[Evaluation & Monitoring]] --0.9--> I
-Q --0.7--> K
-
-R[[Guardrails & Safety]] --0.9--> E
-R --0.8--> L
-R --0.7--> K
-
-S[[Reasoning Techniques]] --0.8--> F
-S --0.8--> D
-S --0.6--> A
-
-T[[Exploration & Discovery]] --0.8--> F
-T --0.7--> C
-T --0.6--> M
+  %% Optional fan-out
+  X -. optional .-> Pa[Parallelize]
+  Pa --> X
 ```
+## Simplified Digraph (patterns condensed)
 
-## Advanced Digraph (suggested weights and IDs)
+```mermaid
+graph LR
+  subgraph Oversight
+    Q[Eval & Monitor]
+    S[Safety & HITL / Exceptions]
+  end
+  subgraph Control
+    R[Routing]
+    O[Resource-Aware Opt]
+    P[Planning]
+    Pri[Prioritization]
+  end
+  subgraph Execution
+    X[Execute / Tool Use]
+    Pa[Parallelize]
+    Re[Reflection]
+  end
+  subgraph Memory
+    M[Memory / RAG]
+    Lr[Learning / Adaptation]
+  end
+  subgraph Teaming
+    G[Multi-Agent Collab]
+    N[Inter-Agent Comms]
+  end
+
+  %% main spine
+  R --> O --> P --> X --> Re --> Q
+  Q -- pass --> Out((Output))
+  Q -- fail --> S --> P
+  Pri --> P
+
+  %% sidecars
+  X --> M --> X
+  Lr --> Q
+  X -. optional .-> Pa --> X
+
+  %% team hooks (collapse G/N as opt)
+  P -. if many roles .-> G
+  G --> N --> X
+
+```
+## Advanced Digraph (suggested weights and IDs) - Complete 20 patterns
 
 ```mermaid
 graph LR
