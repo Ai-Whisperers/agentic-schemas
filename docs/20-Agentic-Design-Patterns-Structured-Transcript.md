@@ -1,13 +1,6 @@
-# 20 Agentic Design Patterns — Structured Transcript (Markdown)
+# 20 Agentic Design Patterns
 
-> Source: Practical 63‑minute breakdown that translates a Google engineer’s ~400‑page book on agentic design patterns into plain‑English, workflow‑ready patterns, with diagrams and a free repository.
-
-400-page book on: https://docs.google.com/document/d/1rsaK53T3Lg5KoGwvf8ukOUvbELRtH-V0LnOIFDxBryE/preview?pli=1&tab=t.0
-original video: https://www.youtube.com/watch?v=e2zIr_2JMbE
-
----
-
-## Overview: 20 Agentic Design Patterns — Structured Transcript (Markdown)
+## Overview: 20 Agentic Design Patterns
 
 ### Purpose and Scope
 A compact, plain‑English guide to 20 agentic design patterns—what they are, when to use them, key trade‑offs (cost, latency, failure modes), and how to combine them to ship reliable agents without over‑engineering.
@@ -20,9 +13,116 @@ Prompt chaining, routing, parallelization, reflection, tool use, planning/orches
 
 ---
 
-## Timestamps (for navigation)
+## Mermaid Overview
 
-00:00 Intro • 00:36 What you will get • 00:54 Pattern 1: Prompt Chaining • 05:42 Pattern 2: Routing • 09:30 Pattern 3: Parallelization • 13:16 Pattern 4: Reflection • 15:51 Pattern 5: Tool Use • 18:19 Pattern 6: Planning • 20:49 Pattern 7: Multi‑Agent Collaboration • 23:45 Pattern 8: Memory Management • 26:42 Pattern 9: Learning and Adaptation • 29:17 Pattern 10: Goal Setting and Monitoring • 31:34 Pattern 11: Exception Handling and Recovery • 34:11 Pattern 12: Human‑in‑the‑Loop • 36:01 Pattern 13: Retrieval (RAG) • 38:14 Pattern 14: Inter‑Agent Communication • 43:08 Pattern 15: Resource‑Aware Optimization • 46:35 Pattern 16: Reasoning Techniques • 49:57 Pattern 17: Evaluation and Monitoring • 52:44 Pattern 18: Guardrails and Safety • 56:04 Pattern 19: Prioritization • 59:29 Pattern 20: Exploration and Discovery • 62:17 Free Repo and Diagrams • 63:08 Final CTA.
+```mermaid
+graph LR
+%% Enhanced vertices: normalized labels, subgraphs, and metric-driven classes
+subgraph Reasoning Core
+A[[Prompt Chaining]]
+D[[Reflection]]
+S[[Reasoning Techniques]]
+T[[Exploration and Discovery]]
+end
+subgraph Planning and Control
+F[[Planning]]
+J[[Goal Setting and Monitoring]]
+P[[Prioritization]]
+O[[Resource-Aware Optimization]]
+E[[Tool Use]]
+end
+subgraph Coordination
+B[[Routing]]
+C[[Parallelization]]
+G[[Multi-Agent Collaboration]]
+N[[Inter-Agent Communication]]
+end
+subgraph Memory and Learning
+H[[Memory Management]]
+M[[Retrieval - RAG]]
+I[[Learning and Adaptation]]
+end
+subgraph Oversight and Safety
+Q[[Evaluation and Monitoring]]
+R[[Guardrails and Safety]]
+K[[Exception Handling and Recovery]]
+L[[Human-in-the-Loop]]
+end
+
+%% Edges with quoted weights
+A -- "0.90" --> D
+A -- "0.80" --> Q
+A -- "0.70" --> K
+B -- "0.90" --> O
+B -- "0.70" --> N
+B -- "0.60" --> L
+C -- "0.85" --> G
+C -- "0.70" --> Q
+C -- "0.60" --> A
+D -- "0.85" --> Q
+D -- "0.70" --> L
+D -- "0.60" --> R
+E -- "0.90" --> R
+E -- "0.80" --> K
+E -- "0.70" --> Q
+F -- "0.95" --> J
+F -- "0.85" --> P
+F -- "0.70" --> O
+F -- "0.60" --> G
+G -- "0.90" --> N
+G -- "0.70" --> H
+G -- "0.70" --> K
+G -- "0.60" --> F
+H -- "0.90" --> M
+H -- "0.80" --> I
+H -- "0.60" --> R
+I -- "0.90" --> Q
+I -- "0.70" --> J
+I -- "0.60" --> F
+J -- "0.90" --> Q
+J -- "0.70" --> P
+K -- "0.90" --> L
+K -- "0.80" --> Q
+K -- "0.70" --> R
+L -- "0.80" --> R
+L -- "0.70" --> Q
+L -- "0.60" --> K
+M -- "0.80" --> H
+M -- "0.70" --> E
+N -- "0.90" --> G
+N -- "0.70" --> L
+N -- "0.60" --> K
+O -- "0.90" --> B
+O -- "0.80" --> Q
+O -- "0.60" --> P
+P -- "0.90" --> F
+P -- "0.70" --> O
+P -- "0.60" --> Q
+Q -- "0.90" --> I
+Q -- "0.70" --> K
+Q -- "0.60" --> O
+R -- "0.90" --> E
+R -- "0.80" --> L
+R -- "0.70" --> K
+R -- "0.60" --> N
+S -- "0.80" --> F
+S -- "0.80" --> D
+S -- "0.60" --> A
+T -- "0.80" --> F
+T -- "0.70" --> C
+T -- "0.60" --> M
+T -- "0.60" --> S
+
+%% Classes: hub/authority/core/bridge overlay
+classDef hub stroke:#ffffff,stroke-width:3px;
+classDef authority stroke:#9AE6B4,stroke-width:3px;
+classDef core stroke:#90CDF4,stroke-width:3px;
+classDef bridge stroke:#F6AD55,stroke-width:4px;
+class A,E,F,G,R,T hub;
+class F,K,L,O,Q,R authority;
+class I,K,L,O,Q,R core;
+class F,G,I,K,N,O,P,Q,R bridge;
+```
 
 ---
 
@@ -151,6 +251,11 @@ Prompt chaining, routing, parallelization, reflection, tool use, planning/orches
 ---
 
 ## Notes and Practical Considerations
+
+> Source: Practical 63‑minute breakdown that translates a Google engineer’s ~400‑page book on agentic design patterns into plain‑English, workflow‑ready patterns, with diagrams and a free repository.
+400-page book on: https://docs.google.com/document/d/1rsaK53T3Lg5KoGwvf8ukOUvbELRtH-V0LnOIFDxBryE/preview?pli=1&tab=t.0
+
+original video source of transcript: https://www.youtube.com/watch?v=e2zIr_2JMbE
 
 1. The original book reportedly contains 21 patterns; MCP servers were excluded in the condensed treatment.  
 2. Patterns often combine in practice: chaining plus resource‑aware routing, reflection plus evaluation, RAG within tool‑use pipelines, and so on.  
