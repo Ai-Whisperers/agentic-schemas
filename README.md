@@ -82,7 +82,7 @@ mindmap
     Reliability 11–15:::class-rel
       Exception Handling & Recovery:::class-rel
       Human-in-the-Loop:::class-rel
-      Retrieval (RAG):::class-rel
+      Retrieval - RAG:::class-rel
       Inter-Agent Communication:::class-rel
       Resource-Aware Optimization:::class-rel
     Reasoning 16–20:::class-rea
