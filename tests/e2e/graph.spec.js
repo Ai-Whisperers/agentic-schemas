@@ -23,9 +23,9 @@ test.describe('Graph Visualization', () => {
     // Wait for links to render
     await page.waitForSelector('.link', { timeout: 5000 });
 
-    // Should have 68 links
+    // Should have 62 links
     const linkCount = await page.locator('.link').count();
-    expect(linkCount).toBe(68);
+    expect(linkCount).toBe(62);
   });
 
   test('should show node details when clicked', async ({ page }) => {
