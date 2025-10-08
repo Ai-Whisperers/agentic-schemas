@@ -1,54 +1,36 @@
 // Main entry point for the application
 import { CONFIG, devLog } from './config.js';
+import { nodes, links, metrics, layerColors, layerNames } from './data.js';
 import './styles.css';
 
 devLog('Starting application in', CONFIG.isDev ? 'DEVELOPMENT' : 'PRODUCTION', 'mode');
 devLog('Base URL:', CONFIG.paths.base);
+devLog('Data loaded:', { nodes: nodes.length, links: links.length });
 
-// Load D3.js dynamically
-async function loadD3() {
+// Make data available globally for app.js (which expects window.nodes, etc.)
+window.nodes = nodes;
+window.links = links;
+window.metrics = metrics;
+window.layerColors = layerColors;
+window.layerNames = layerNames;
+
+// Load D3.js from CDN (Vite will handle this in the build)
+const d3Script = document.createElement('script');
+d3Script.src = 'https://cdn.skypack.dev/d3@7';
+d3Script.type = 'module';
+d3Script.onload = async () => {
+    // D3 is loaded from Skypack as a module
+    const d3Module = await import('https://cdn.skypack.dev/d3@7');
+    window.d3 = d3Module.default || d3Module;
+
+    devLog('D3.js loaded successfully');
+
+    // Now load the app which depends on D3 and data
     try {
-        // In Vite, we'll use npm package instead of CDN for better bundling
-        const d3Module = await import('https://cdn.skypack.dev/d3@7');
-        window.d3 = d3Module.default || d3Module;
-        devLog('D3.js loaded successfully', window.d3.version);
-        return true;
+        await import('./app.js');
+        devLog('Application initialized successfully');
     } catch (error) {
-        console.error('Failed to load D3.js:', error);
-        document.body.innerHTML = `
-            <div style="padding: 40px; text-align: center; color: #e0e6ed;">
-                <h2>Failed to load D3.js library</h2>
-                <p style="color: #8b93a6; margin-top: 16px;">Please check your internet connection and refresh the page.</p>
-                <pre style="margin-top: 20px; padding: 12px; background: #1a1f35; border-radius: 6px; text-align: left; overflow: auto;">${error.message}</pre>
-            </div>
-        `;
-        return false;
-    }
-}
-
-// Load data and application
-async function loadApp() {
-    try {
-        // Load data module
-        const dataModule = await import('./data.js');
-        window.nodes = dataModule.nodes;
-        window.links = dataModule.links;
-        window.metrics = dataModule.metrics;
-        window.layerColors = dataModule.layerColors;
-        window.layerNames = dataModule.layerNames;
-
-        devLog('Data loaded:', {
-            nodes: window.nodes.length,
-            links: window.links.length
-        });
-
-        // Load and initialize app
-        const appModule = await import('./app.js');
-        devLog('Application initialized');
-
-        return true;
-    } catch (error) {
-        console.error('Failed to load application:', error);
+        console.error('Failed to initialize application:', error);
         document.getElementById('pattern-details').innerHTML = `
             <div class="empty-state" style="color: #ef4444;">
                 <h3>⚠️ Failed to load application</h3>
@@ -56,26 +38,18 @@ async function loadApp() {
                 <pre style="margin-top: 16px; padding: 12px; background: #1a1f35; border-radius: 6px; text-align: left; font-size: 11px; overflow: auto;">${error.stack}</pre>
             </div>
         `;
-        return false;
     }
-}
+};
 
-// Initialize application
-async function init() {
-    devLog('Initializing application...');
+d3Script.onerror = () => {
+    console.error('Failed to load D3.js from CDN');
+    document.body.innerHTML = `
+        <div style="padding: 40px; text-align: center; color: #e0e6ed;">
+            <h2>Failed to load D3.js library</h2>
+            <p style="color: #8b93a6; margin-top: 16px;">Please check your internet connection and refresh the page.</p>
+        </div>
+    `;
+};
 
-    const d3Loaded = await loadD3();
-    if (!d3Loaded) return;
-
-    const appLoaded = await loadApp();
-    if (!appLoaded) return;
-
-    devLog('Application ready');
-}
-
-// Start when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
+// Inject the script
+document.head.appendChild(d3Script);

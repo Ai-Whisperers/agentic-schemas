@@ -21,11 +21,8 @@ export default defineConfig(({ mode }) => {
         }
       },
       rollupOptions: {
+        input: './index-vite.html', // Use Vite-specific HTML file
         output: {
-          // Manual chunking for better caching
-          manualChunks: {
-            'd3': ['d3']
-          },
           // Consistent naming for assets
           assetFileNames: 'assets/[name].[hash][extname]',
           chunkFileNames: 'assets/[name].[hash].js',

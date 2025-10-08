@@ -405,3 +405,5 @@ const layerNames = {
   "memory_learning": "Memory & Learning",
   "oversight_safety": "Oversight & Safety"
 };
+// Export all data for module imports
+export { nodes, links, metrics, layerColors, layerNames };
