@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Design Patterns - Interactive Graph</title>
+    <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="sidebar">
+            <div class="header">
+                <h1>Agentic Design Patterns</h1>
+                <p>Interactive visualization of 20 agentic design patterns and their relationships</p>
+            </div>
+            <div class="controls">
+                <div class="control-group">
+                    <label>Filter by Layer</label>
+                    <div class="filter-buttons" id="layer-filters"></div>
+                </div>
+                <div class="control-group">
+                    <label>Search Patterns</label>
+                    <input type="text" class="search-box" id="search-input" placeholder="Search by name or alias...">
+                </div>
+            </div>
+            <div id="pattern-details">
+                <div class="empty-state">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p>Select a pattern to view details</p>
+                </div>
+            </div>
+        </div>
+        <div id="graph-container">
+            <svg id="svg-container"></svg>
+            <div class="legend">
+                <h4>Layers</h4>
+                <div id="legend-content"></div>
+            </div>
+            <div class="zoom-controls">
+                <button class="zoom-btn" id="zoom-in">+</button>
+                <button class="zoom-btn" id="zoom-reset">⊙</button>
+                <button class="zoom-btn" id="zoom-out">−</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vite will inject the module script here -->
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
