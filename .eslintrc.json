@@ -9,6 +9,14 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "globals": {
+    "d3": "readonly",
+    "nodes": "readonly",
+    "links": "readonly",
+    "metrics": "readonly",
+    "layerColors": "readonly",
+    "layerNames": "readonly"
+  },
   "rules": {
     "indent": ["warn", 4],
     "quotes": ["warn", "single"],

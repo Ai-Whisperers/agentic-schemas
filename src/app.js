@@ -1,7 +1,6 @@
 // Interactive Graph Application - Optimized for Performance
-let selectedNode = null;
 let activeLayerFilters = new Set();
-let searchQuery = "";
+let searchQuery = '';
 
 // Performance optimization: Cache adjacency list for O(1) connection lookups
 const adjacencyMap = new Map();
@@ -20,41 +19,39 @@ function debounce(func, wait) {
 }
 
 // Set up SVG with responsive sizing
-const container = d3.select("#svg-container");
+const container = d3.select('#svg-container');
 let width = container.node().clientWidth;
 let height = container.node().clientHeight;
 
 const svg = container
-    .attr("width", width)
-    .attr("height", height);
+    .attr('width', width)
+    .attr('height', height);
 
-const g = svg.append("g");
+const g = svg.append('g');
 
 // Set up zoom with smoother transitions
 const zoom = d3.zoom()
     .scaleExtent([0.1, 4])
-    .on("zoom", (event) => {
-        g.attr("transform", event.transform);
+    .on('zoom', (event) => {
+        g.attr('transform', event.transform);
     });
 
 svg.call(zoom);
 
 // Zoom controls with smooth transitions
-d3.select("#zoom-in").on("click", () => {
+d3.select('#zoom-in').on('click', () => {
     svg.transition().duration(300).call(zoom.scaleBy, 1.3);
 });
 
-d3.select("#zoom-out").on("click", () => {
+d3.select('#zoom-out').on('click', () => {
     svg.transition().duration(300).call(zoom.scaleBy, 0.7);
 });
 
-d3.select("#zoom-reset").on("click", () => {
+d3.select('#zoom-reset').on('click', () => {
     svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
 });
 
 // Process data - avoid unnecessary copying for better memory efficiency
-const nodeMap = new Map(nodes.map(n => [n.short_id, n]));
-
 const graphData = {
     nodes: nodes,
     links: links.map(l => ({
@@ -83,15 +80,15 @@ graphData.links.forEach(l => {
 
 // Create force simulation with optimized parameters
 const simulation = d3.forceSimulation(graphData.nodes)
-    .force("link", d3.forceLink(graphData.links)
+    .force('link', d3.forceLink(graphData.links)
         .id(d => d.short_id)
         .distance(d => 150 / d.weight)
         .strength(d => d.weight / 2))
-    .force("charge", d3.forceManyBody()
+    .force('charge', d3.forceManyBody()
         .strength(-800)
         .distanceMax(400))
-    .force("center", d3.forceCenter(width / 2, height / 2))
-    .force("collision", d3.forceCollide()
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collision', d3.forceCollide()
         .radius(d => d.radius + 5)
         .strength(0.8))
     .alphaDecay(0.02);
@@ -101,72 +98,72 @@ let tickCounter = 0;
 const maxTicksBeforeStop = 300;
 
 // Create arrow markers
-svg.append("defs").selectAll("marker")
-    .data(["end"])
-    .enter().append("marker")
-    .attr("id", "arrowhead")
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 25)
-    .attr("refY", 0)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 6)
-    .attr("orient", "auto")
-    .append("path")
-    .attr("d", "M0,-5L10,0L0,5")
-    .attr("fill", "#2a3142");
+svg.append('defs').selectAll('marker')
+    .data(['end'])
+    .enter().append('marker')
+    .attr('id', 'arrowhead')
+    .attr('viewBox', '0 -5 10 10')
+    .attr('refX', 25)
+    .attr('refY', 0)
+    .attr('markerWidth', 6)
+    .attr('markerHeight', 6)
+    .attr('orient', 'auto')
+    .append('path')
+    .attr('d', 'M0,-5L10,0L0,5')
+    .attr('fill', '#2a3142');
 
 // Create links with weight-based stroke width for visual clarity
-const link = g.append("g")
-    .selectAll("line")
+const link = g.append('g')
+    .selectAll('line')
     .data(graphData.links)
-    .enter().append("line")
-    .attr("class", "link")
-    .attr("marker-end", "url(#arrowhead)")
-    .style("stroke-width", d => 0.5 + (d.weight * 2));
+    .enter().append('line')
+    .attr('class', 'link')
+    .attr('marker-end', 'url(#arrowhead)')
+    .style('stroke-width', d => 0.5 + (d.weight * 2));
 
 // Create nodes
-const node = g.append("g")
-    .selectAll("g")
+const node = g.append('g')
+    .selectAll('g')
     .data(graphData.nodes)
-    .enter().append("g")
-    .attr("class", "node")
+    .enter().append('g')
+    .attr('class', 'node')
     .call(d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended))
-    .on("click", (event, d) => {
+        .on('start', dragstarted)
+        .on('drag', dragged)
+        .on('end', dragended))
+    .on('click', (event, d) => {
         event.stopPropagation();
         selectNode(d);
     });
 
 // Add circles to nodes with pre-computed radius
-node.append("circle")
-    .attr("r", d => d.radius)
-    .attr("fill", d => layerColors[d.layer]);
+node.append('circle')
+    .attr('r', d => d.radius)
+    .attr('fill', d => layerColors[d.layer]);
 
 // Add labels to nodes with pre-computed offset
-node.append("text")
-    .attr("dy", d => d.radius + 5)
+node.append('text')
+    .attr('dy', d => d.radius + 5)
     .text(d => d.short_id);
 
 // Add ID labels
-node.append("text")
-    .attr("class", "node-id")
-    .attr("dy", 5)
-    .attr("font-size", "9px")
-    .attr("font-weight", "600")
-    .attr("fill", "#0a0e27")
+node.append('text')
+    .attr('class', 'node-id')
+    .attr('dy', 5)
+    .attr('font-size', '9px')
+    .attr('font-weight', '600')
+    .attr('fill', '#0a0e27')
     .text(d => d.short_id);
 
 // Update positions - optimized with auto-stop when stable
-simulation.on("tick", () => {
+simulation.on('tick', () => {
     link
-        .attr("x1", d => d.source.x)
-        .attr("y1", d => d.source.y)
-        .attr("x2", d => d.target.x)
-        .attr("y2", d => d.target.y);
+        .attr('x1', d => d.source.x)
+        .attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x)
+        .attr('y2', d => d.target.y);
 
-    node.attr("transform", d => `translate(${d.x},${d.y})`);
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
 
     // Auto-stop simulation when stable to save CPU
     tickCounter++;
@@ -201,7 +198,6 @@ function dragended(event, d) {
 
 // Select node function - optimized with adjacency map for instant lookups
 function selectNode(d) {
-    selectedNode = d;
 
     // Use cached adjacency for O(1) lookups instead of filtering all links
     const connectedNodes = new Set([
@@ -211,13 +207,13 @@ function selectNode(d) {
     ]);
 
     // Update visual selection - much faster with pre-computed connections
-    node.classed("selected", n => n.short_id === d.short_id)
-        .classed("dimmed", n => !connectedNodes.has(n.short_id));
+    node.classed('selected', n => n.short_id === d.short_id)
+        .classed('dimmed', n => !connectedNodes.has(n.short_id));
 
     // Highlight connected links
-    link.classed("highlighted", l =>
-            l.source.short_id === d.short_id || l.target.short_id === d.short_id)
-        .classed("dimmed", l =>
+    link.classed('highlighted', l =>
+        l.source.short_id === d.short_id || l.target.short_id === d.short_id)
+        .classed('dimmed', l =>
             l.source.short_id !== d.short_id && l.target.short_id !== d.short_id);
 
     // Update details panel
@@ -225,10 +221,9 @@ function selectNode(d) {
 }
 
 // Deselect on background click
-svg.on("click", () => {
-    selectedNode = null;
-    node.classed("selected", false).classed("dimmed", false);
-    link.classed("highlighted", false).classed("dimmed", false);
+svg.on('click', () => {
+    node.classed('selected', false).classed('dimmed', false);
+    link.classed('highlighted', false).classed('dimmed', false);
     showEmptyState();
 });
 
@@ -357,8 +352,8 @@ function updateDetailsPanel(d) {
                     <h4>Outgoing (${outgoing.length})</h4>
                     <ul>
                         ${outgoing.sort((a, b) => b.weight - a.weight).map(l =>
-                            `<li>${l.target.label} <span style="color: #5a6378;">(${l.weight.toFixed(2)})</span></li>`
-                        ).join('')}
+        `<li>${l.target.label} <span style="color: #5a6378;">(${l.weight.toFixed(2)})</span></li>`
+    ).join('')}
                     </ul>
                 </div>
             `);
@@ -370,8 +365,8 @@ function updateDetailsPanel(d) {
                     <h4>Incoming (${incoming.length})</h4>
                     <ul>
                         ${incoming.sort((a, b) => b.weight - a.weight).map(l =>
-                            `<li>${l.source.label} <span style="color: #5a6378;">(${l.weight.toFixed(2)})</span></li>`
-                        ).join('')}
+        `<li>${l.source.label} <span style="color: #5a6378;">(${l.weight.toFixed(2)})</span></li>`
+    ).join('')}
                     </ul>
                 </div>
             `);
@@ -382,12 +377,12 @@ function updateDetailsPanel(d) {
     }
 
     // Use join instead of concatenation for better performance
-    d3.select("#pattern-details").html(htmlParts.join(''));
+    d3.select('#pattern-details').html(htmlParts.join(''));
 }
 
 // Show empty state
 function showEmptyState() {
-    d3.select("#pattern-details").html(`
+    d3.select('#pattern-details').html(`
         <div class="empty-state">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -399,19 +394,19 @@ function showEmptyState() {
 
 // Layer filters
 const layers = [...new Set(nodes.map(n => n.layer))];
-const layerFiltersContainer = d3.select("#layer-filters");
+const layerFiltersContainer = d3.select('#layer-filters');
 
 layers.forEach(layer => {
-    const btn = layerFiltersContainer.append("button")
-        .attr("class", "filter-btn")
+    layerFiltersContainer.append('button')
+        .attr('class', 'filter-btn')
         .text(layerNames[layer])
-        .on("click", function() {
+        .on('click', function() {
             if (activeLayerFilters.has(layer)) {
                 activeLayerFilters.delete(layer);
-                d3.select(this).classed("active", false);
+                d3.select(this).classed('active', false);
             } else {
                 activeLayerFilters.add(layer);
-                d3.select(this).classed("active", true);
+                d3.select(this).classed('active', true);
             }
             applyFilters();
         });
@@ -420,17 +415,17 @@ layers.forEach(layer => {
 // Search - debounced for better performance during typing
 const debouncedFilter = debounce(applyFilters, 150);
 
-d3.select("#search-input").on("input", function() {
+d3.select('#search-input').on('input', function() {
     searchQuery = this.value.toLowerCase();
     debouncedFilter();
 });
 
 // Apply filters - optimized to avoid unnecessary DOM queries
 function applyFilters() {
-    node.style("display", d => {
+    node.style('display', d => {
         // Layer filter
         if (activeLayerFilters.size > 0 && !activeLayerFilters.has(d.layer)) {
-            return "none";
+            return 'none';
         }
 
         // Search filter
@@ -443,7 +438,7 @@ function applyFilters() {
             const matchShortId = d.short_id.toLowerCase().includes(searchQuery);
 
             if (!matchLabel && !matchAlias && !matchId && !matchShortId) {
-                return "none";
+                return 'none';
             }
         }
 
@@ -451,27 +446,27 @@ function applyFilters() {
     });
 
     // Update links visibility
-    link.style("display", l => {
+    link.style('display', l => {
         const sourceVisible = node.filter(n => n.short_id === l.source.short_id)
-            .style("display") !== "none";
+            .style('display') !== 'none';
         const targetVisible = node.filter(n => n.short_id === l.target.short_id)
-            .style("display") !== "none";
+            .style('display') !== 'none';
 
-        return (sourceVisible && targetVisible) ? null : "none";
+        return (sourceVisible && targetVisible) ? null : 'none';
     });
 }
 
 // Legend
-const legendContent = d3.select("#legend-content");
+const legendContent = d3.select('#legend-content');
 Object.entries(layerNames).forEach(([key, name]) => {
-    const item = legendContent.append("div")
-        .attr("class", "legend-item");
+    const item = legendContent.append('div')
+        .attr('class', 'legend-item');
 
-    item.append("div")
-        .attr("class", "legend-color")
-        .style("background-color", layerColors[key]);
+    item.append('div')
+        .attr('class', 'legend-color')
+        .style('background-color', layerColors[key]);
 
-    item.append("span")
+    item.append('span')
         .text(name);
 });
 
@@ -484,11 +479,11 @@ window.addEventListener('resize', debounce(() => {
         width = newWidth;
         height = newHeight;
 
-        svg.attr("width", width)
-           .attr("height", height);
+        svg.attr('width', width)
+            .attr('height', height);
 
         simulation
-            .force("center", d3.forceCenter(width / 2, height / 2))
+            .force('center', d3.forceCenter(width / 2, height / 2))
             .alpha(0.3)
             .restart();
 
