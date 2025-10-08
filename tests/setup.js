@@ -1,11 +1,5 @@
 // Test setup for Vitest
-import { expect, afterEach } from 'vitest';
-import { cleanup } from '@testing-library/dom';
-
-// Cleanup after each test
-afterEach(() => {
-  cleanup();
-});
+import { expect } from 'vitest';
 
 // Add custom matchers if needed
 expect.extend({
